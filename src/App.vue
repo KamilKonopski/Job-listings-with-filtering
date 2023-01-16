@@ -1,7 +1,22 @@
-<script setup></script>
+<script>
+import JobsListComponent from "./components/JobsListComponent.vue";
+import jsonData from "./data/data.json";
+export default {
+  components: {
+    JobsListComponent,
+  },
+  setup() {
+    const data = jsonData;
+
+    return { data };
+  },
+};
+</script>
+>
 
 <template>
   <header class="header"></header>
+  <main><JobsListComponent :jobs="data" /></main>
 </template>
 
 <style scoped>
