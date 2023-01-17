@@ -21,7 +21,7 @@ export default {
 
 <style scoped>
 .header {
-	background: url("./assets/images/bg-header-mobile.svg") no-repeat;
+	background: url("./images/bg-header-mobile.svg") no-repeat;
 	background-color: hsl(180, 29%, 50%);
 	height: 23vh;
 	width: 100%;
@@ -29,8 +29,7 @@ export default {
 
 @media screen and (min-width: 1024px) {
 	.header {
-		background: url("./assets/images/bg-header-desktop.svg") no-repeat top
-			center;
+		background: url("./images/bg-header-desktop.svg") no-repeat top center;
 		background-color: hsl(180, 29%, 50%);
 		height: 15vh;
 	}
