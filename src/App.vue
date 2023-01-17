@@ -1,5 +1,5 @@
 <script>
-import JobsListComponent from "./components/JobsListComponent.vue";
+import JobsListComponent from "./components/JobsList/JobsListComponent.vue";
 import jsonData from "./data/data.json";
 export default {
 	components: {
@@ -16,7 +16,7 @@ export default {
 
 <template>
 	<header class="header"></header>
-	<main><JobsListComponent :jobs="data" /></main>
+	<main class="main"><JobsListComponent :jobs="data" /></main>
 </template>
 
 <style scoped>
@@ -27,11 +27,20 @@ export default {
 	width: 100%;
 }
 
+.main {
+	margin: 0 auto;
+	width: 90%;
+}
+
 @media screen and (min-width: 1024px) {
 	.header {
 		background: url("./images/bg-header-desktop.svg") no-repeat top center;
 		background-color: hsl(180, 29%, 50%);
 		height: 15vh;
+	}
+
+	.main {
+		width: 1024px;
 	}
 }
 </style>
