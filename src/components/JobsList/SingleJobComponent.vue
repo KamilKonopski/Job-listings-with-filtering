@@ -1,18 +1,18 @@
 <script>
 export default {
 	name: "SingleJobComponent",
-	props: ["jobs"],
+	props: ["jobs", "addToFilteredArray"],
 	setup(props) {
 		function getJobRole(event) {
 			const target = event.target.innerText;
 			const filteredJob = props.jobs.filter((job) => job.role === target);
-			console.log(filteredJob);
+			props.addToFilteredArray(filteredJob);
 		}
 
 		function getJobLevel(event) {
 			const target = event.target.innerText;
 			const filteredJob = props.jobs.filter((job) => job.level === target);
-			console.log(filteredJob);
+			props.addToFilteredArray(filteredJob);
 		}
 
 		function getJobLanguage(event) {
@@ -20,7 +20,7 @@ export default {
 			const filteredJob = props.jobs.filter((job) =>
 				job.languages.some((language) => language === target)
 			);
-			console.log(filteredJob);
+			props.addToFilteredArray(filteredJob);
 		}
 
 		function getJobTools(event) {
@@ -28,7 +28,7 @@ export default {
 			const filteredJob = props.jobs.filter((job) =>
 				job.tools.some((tool) => tool === target)
 			);
-			console.log(filteredJob);
+			props.addToFilteredArray(filteredJob);
 		}
 
 		return { getJobRole, getJobLevel, getJobLanguage, getJobTools };
