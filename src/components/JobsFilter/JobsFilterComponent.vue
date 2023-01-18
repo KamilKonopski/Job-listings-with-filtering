@@ -1,7 +1,12 @@
 <script>
 export default {
 	name: "JobsFilterComponent",
-	props: ["jobs", "clickedButton"],
+	props: [
+		"jobs",
+		"clickedButton",
+		"clearFilteredJobs",
+		"removeFromFilteredArray",
+	],
 };
 </script>
 
@@ -13,11 +18,15 @@ export default {
 			:key="index"
 		>
 			<span class="filtered__item">{{ text }}</span>
-			<button class="filtered__text-btn">
-				<img src="/images/icon-remove.svg" alt="remove button" />
-			</button>
+			<img
+				@click="removeFromFilteredArray"
+				src="/images/icon-remove.svg"
+				alt="remove button"
+			/>
 		</div>
-		<button class="filtered__clear-btn">Clear</button>
+		<button @click="clearFilteredJobs" class="filtered__clear-btn">
+			Clear
+		</button>
 	</div>
 </template>
 
