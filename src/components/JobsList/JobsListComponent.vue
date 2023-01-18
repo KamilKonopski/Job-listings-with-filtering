@@ -15,13 +15,7 @@ export default {
 </script>
 
 <template>
-	<div v-if="filteredArray.length" class="jobs">
-		<SingleJobComponent
-			:jobs="filteredArray"
-			:addToFilteredArray="addToFilteredJobs"
-		/>
-	</div>
-	<div v-else class="jobs">
+	<div class="jobs">
 		<SingleJobComponent :jobs="jobs" :addToFilteredArray="addToFilteredJobs" />
 	</div>
 </template>
