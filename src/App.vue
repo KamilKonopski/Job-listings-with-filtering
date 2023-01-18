@@ -1,14 +1,27 @@
 <script>
+import { ref } from "vue";
 import JobsListComponent from "./components/JobsList/JobsListComponent.vue";
+import JobsFilterComponent from "./components/JobsFilter/JobsFilterComponent.vue";
 import jsonData from "./data/data.json";
 export default {
 	components: {
 		JobsListComponent,
+		JobsFilterComponent,
 	},
 	setup() {
+		const filteredArray = ref([]);
+		let clicked = ref([]);
 		const data = jsonData;
 
-		return { data };
+		function addToFilteredArray(filteredJob, clickedButton) {
+			filteredArray.value = filteredJob;
+			if (clicked.value.includes(clickedButton)) {
+				return;
+			}
+			clicked.value.push(clickedButton);
+		}
+
+		return { clicked, filteredArray, addToFilteredArray, data };
 	},
 };
 </script>
@@ -16,7 +29,18 @@ export default {
 
 <template>
 	<header class="header"></header>
-	<main class="main"><JobsListComponent :jobs="data" /></main>
+	<JobsFilterComponent
+		v-if="filteredArray.length"
+		:jobs="filteredArray"
+		:clickedButton="clicked"
+	/>
+	<main class="main">
+		<JobsListComponent
+			:jobs="data"
+			:filteredArray="filteredArray"
+			:addToFilteredArray="addToFilteredArray"
+		/>
+	</main>
 </template>
 
 <style scoped>

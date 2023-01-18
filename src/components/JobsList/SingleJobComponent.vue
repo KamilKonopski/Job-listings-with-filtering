@@ -6,13 +6,13 @@ export default {
 		function getJobRole(event) {
 			const target = event.target.innerText;
 			const filteredJob = props.jobs.filter((job) => job.role === target);
-			props.addToFilteredArray(filteredJob);
+			props.addToFilteredArray(filteredJob, target);
 		}
 
 		function getJobLevel(event) {
 			const target = event.target.innerText;
 			const filteredJob = props.jobs.filter((job) => job.level === target);
-			props.addToFilteredArray(filteredJob);
+			props.addToFilteredArray(filteredJob, target);
 		}
 
 		function getJobLanguage(event) {
@@ -20,7 +20,7 @@ export default {
 			const filteredJob = props.jobs.filter((job) =>
 				job.languages.some((language) => language === target)
 			);
-			props.addToFilteredArray(filteredJob);
+			props.addToFilteredArray(filteredJob, target);
 		}
 
 		function getJobTools(event) {
@@ -28,7 +28,7 @@ export default {
 			const filteredJob = props.jobs.filter((job) =>
 				job.tools.some((tool) => tool === target)
 			);
-			props.addToFilteredArray(filteredJob);
+			props.addToFilteredArray(filteredJob, target);
 		}
 
 		return { getJobRole, getJobLevel, getJobLanguage, getJobTools };

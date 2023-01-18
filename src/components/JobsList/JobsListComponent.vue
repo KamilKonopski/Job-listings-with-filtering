@@ -1,18 +1,15 @@
 <script>
-import { ref } from "vue";
 import SingleJobComponent from "./SingleJobComponent.vue";
 export default {
 	components: { SingleJobComponent },
 	name: "JobsListComponent",
-	props: ["jobs"],
-	setup() {
-		let filteredArray = ref([]);
-		function addToFilteredArray(filteredJob) {
-			filteredArray.value = filteredJob;
-			console.log(filteredArray);
+	props: ["jobs", "addToFilteredArray", "filteredArray"],
+	setup(props) {
+		function addToFilteredJobs(filteredJob, clickedButton) {
+			props.addToFilteredArray(filteredJob, clickedButton);
 		}
 
-		return { filteredArray, addToFilteredArray };
+		return { addToFilteredJobs };
 	},
 };
 </script>
@@ -21,11 +18,11 @@ export default {
 	<div v-if="filteredArray.length" class="jobs">
 		<SingleJobComponent
 			:jobs="filteredArray"
-			:addToFilteredArray="addToFilteredArray"
+			:addToFilteredArray="addToFilteredJobs"
 		/>
 	</div>
 	<div v-else class="jobs">
-		<SingleJobComponent :jobs="jobs" :addToFilteredArray="addToFilteredArray" />
+		<SingleJobComponent :jobs="jobs" :addToFilteredArray="addToFilteredJobs" />
 	</div>
 </template>
 
