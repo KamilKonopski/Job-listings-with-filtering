@@ -9,9 +9,9 @@ export default {
 		JobsFilterComponent,
 	},
 	setup() {
-		const filteredArray = ref([]);
+		let data = jsonData;
+		const filteredArray = ref(data);
 		let clicked = ref([]);
-		const data = jsonData;
 
 		function addToFilteredArray(filteredJob, clickedButton) {
 			filteredArray.value = filteredJob;
@@ -21,7 +21,51 @@ export default {
 			clicked.value.push(clickedButton);
 		}
 
-		return { clicked, filteredArray, addToFilteredArray, data };
+		function removeFromFilteredArray(event) {
+			const target = event.target.previousElementSibling.innerText;
+
+			const searchResults = data.map((job) => [
+				job.level,
+				job.role,
+				...job.languages,
+				...job.tools,
+			]);
+
+			const union = searchResults
+				.map((searchResult, i) => {
+					if (
+						clicked.value.every((keyWord) => {
+							return searchResult.includes(keyWord);
+						})
+					) {
+						return i;
+					}
+				})
+				.filter((item) => item !== undefined);
+
+			const filteredData = data.filter((filteredArray, i) => {
+				return union.includes(i);
+			});
+			filteredArray.value = filteredData;
+
+			const newClicked = clicked.value.filter((element) => {
+				return element !== target;
+			});
+			clicked.value = newClicked;
+		}
+
+		function clearFilteredJobs() {
+			filteredArray.value = [];
+		}
+
+		return {
+			clicked,
+			data,
+			filteredArray,
+			addToFilteredArray,
+			clearFilteredJobs,
+			removeFromFilteredArray,
+		};
 	},
 };
 </script>
@@ -30,14 +74,15 @@ export default {
 <template>
 	<header class="header"></header>
 	<JobsFilterComponent
-		v-if="filteredArray.length"
+		v-if="clicked.length"
 		:jobs="filteredArray"
 		:clickedButton="clicked"
+		:clearFilteredJobs="clearFilteredJobs"
+		:removeFromFilteredArray="removeFromFilteredArray"
 	/>
 	<main class="main">
 		<JobsListComponent
-			:jobs="data"
-			:filteredArray="filteredArray"
+			:jobs="filteredArray"
 			:addToFilteredArray="addToFilteredArray"
 		/>
 	</main>
