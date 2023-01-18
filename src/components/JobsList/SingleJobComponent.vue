@@ -2,6 +2,37 @@
 export default {
 	name: "SingleJobComponent",
 	props: ["jobs"],
+	setup(props) {
+		function getJobRole(event) {
+			const target = event.target.innerText;
+			const filteredJob = props.jobs.filter((job) => job.role === target);
+			console.log(filteredJob);
+		}
+
+		function getJobLevel(event) {
+			const target = event.target.innerText;
+			const filteredJob = props.jobs.filter((job) => job.level === target);
+			console.log(filteredJob);
+		}
+
+		function getJobLanguage(event) {
+			const target = event.target.innerText;
+			const filteredJob = props.jobs.filter((job) =>
+				job.languages.some((language) => language === target)
+			);
+			console.log(filteredJob);
+		}
+
+		function getJobTools(event) {
+			const target = event.target.innerText;
+			const filteredJob = props.jobs.filter((job) =>
+				job.tools.some((tool) => tool === target)
+			);
+			console.log(filteredJob);
+		}
+
+		return { getJobRole, getJobLevel, getJobLanguage, getJobTools };
+	},
 };
 </script>
 
@@ -25,13 +56,14 @@ export default {
 			<span class="job__location">{{ job.location }}</span>
 		</div>
 		<div class="job__buttons">
-			<button class="job__skill">
+			<button @click="getJobRole" class="job__skill">
 				{{ job.role }}
 			</button>
-			<button class="job__skill">
+			<button @click="getJobLevel" class="job__skill">
 				{{ job.level }}
 			</button>
 			<button
+				@click="getJobLanguage"
 				class="job__skill"
 				v-for="(language, index) in job.languages"
 				:key="index"
@@ -39,6 +71,7 @@ export default {
 				{{ language }}
 			</button>
 			<button
+				@click="getJobTools"
 				class="job__skill"
 				v-for="(tool, index) in job.tools"
 				:key="index"
