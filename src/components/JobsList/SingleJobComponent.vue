@@ -51,9 +51,9 @@ export default {
 			<span class="job__new" v-if="job.new">new!</span>
 			<span class="job__featured" v-if="job.featured">featured</span>
 			<span class="job__position">{{ job.position }}</span>
-			<span class="job__posted">{{ job.postedAt }}</span>
-			<span class="job__contract">{{ job.contract }}</span>
-			<span class="job__location">{{ job.location }}</span>
+			<span class="job__info-add">{{ job.postedAt }}</span>
+			<span class="job__info-add">{{ job.contract }}</span>
+			<span class="job__info-add">{{ job.location }}</span>
 		</div>
 		<div class="job__buttons">
 			<button @click="getJobRole" class="job__skill">
@@ -85,7 +85,6 @@ export default {
 <style scoped>
 .job {
 	background-color: #fff;
-
 	border-radius: 5px;
 	margin-bottom: 4rem;
 	padding: 3.5rem 1.8rem 2rem;
@@ -100,7 +99,7 @@ export default {
 	height: 5rem;
 	left: 5%;
 	position: absolute;
-	top: -25%;
+	top: -10%;
 	width: 5rem;
 }
 
@@ -139,13 +138,56 @@ export default {
 
 .job__position {
 	color: #000;
+	cursor: pointer;
 	flex-basis: 100%;
 	font-weight: 700;
 	margin: 1.5rem 0;
+	transition: all 0.2 linear;
+}
+
+.job__position:hover {
+	color: var(--desaturated-dark-cyan);
+}
+
+.job__info-add {
+	color: var(--dark-grayish-cyan);
+	font-weight: 500;
+	margin-right: 1.5rem;
+}
+
+.job__info-add:nth-last-child(1)::before,
+.job__info-add:nth-last-child(2)::before {
+	background-color: var(--dark-grayish-cyan);
+	border-radius: 50%;
+	content: "";
+	display: inline-block;
+	height: 4px;
+	margin: 0 1rem 0.2rem 0;
+	width: 4px;
 }
 
 .job__buttons {
 	display: flex;
 	flex-wrap: wrap;
+	border-top: 1px solid var(--dark-grayish-cyan);
+	margin-top: 2rem;
+}
+
+.job__skill {
+	background-color: var(--light-grayish-cyan-ft);
+	border: none;
+	color: var(--desaturated-dark-cyan);
+	cursor: pointer;
+	flex-basis: 25%;
+	font-size: 1.5rem;
+	font-weight: 700;
+	margin: 1rem 1.5rem 1rem 0;
+	padding: 5px;
+	transition: all 0.2s linear;
+}
+
+.job__skill:hover {
+	background-color: var(--desaturated-dark-cyan);
+	color: var(--light-grayish-cyan-ft);
 }
 </style>
