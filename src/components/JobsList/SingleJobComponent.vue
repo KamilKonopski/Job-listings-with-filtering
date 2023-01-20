@@ -197,7 +197,7 @@ export default {
 		display: grid;
 		grid-template-columns: auto auto 1fr;
 		grid-template-rows: auto auto auto;
-		padding-bottom: 4rem;
+		padding-bottom: 3rem;
 	}
 
 	.job__icon {
@@ -205,14 +205,18 @@ export default {
 		width: 7rem;
 	}
 
+	.job__info {
+		margin-left: 2rem;
+	}
+
 	.job__position {
-		margin: 0 35rem 0 0;
+		margin: 0.5rem 35rem 1rem 0;
 	}
 
 	.job__buttons {
 		border: none;
 		flex-wrap: nowrap;
-		margin: 0.5rem 0 0 0;
+		margin: 1rem 0 0 0;
 	}
 
 	.job__skill {
