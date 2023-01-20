@@ -142,7 +142,7 @@ export default {
 	flex-basis: 100%;
 	font-weight: 700;
 	margin: 1.5rem 0;
-	transition: all 0.2 linear;
+	transition: all 0.2s linear;
 }
 
 .job__position:hover {
@@ -189,5 +189,24 @@ export default {
 .job__skill:hover {
 	background-color: var(--desaturated-dark-cyan);
 	color: var(--light-grayish-cyan-ft);
+}
+
+@media screen and (min-width: 1024px) {
+	.job {
+		align-items: start;
+		display: grid;
+		grid-template-columns: auto auto 1fr;
+		grid-template-rows: auto auto auto;
+	}
+
+	.job__icon {
+		position: static;
+		width: 7rem;
+	}
+
+	.job__buttons {
+		border: none;
+		flex-wrap: nowrap;
+	}
 }
 </style>
