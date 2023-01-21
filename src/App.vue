@@ -9,22 +9,22 @@ export default {
 		JobsFilterComponent,
 	},
 	setup() {
-		let data = jsonData;
-		const filteredArray = ref(data);
-		let clicked = ref([]);
+		let jobs = jsonData;
+		const filteredJobs = ref(jobs);
+		let clickedJobs = ref([]);
 
 		function addToFilteredArray(filteredJob, clickedButton) {
-			filteredArray.value = filteredJob;
-			if (clicked.value.includes(clickedButton)) {
+			filteredJobs.value = filteredJob;
+			if (clickedJobs.value.includes(clickedButton)) {
 				return;
 			}
-			clicked.value.push(clickedButton);
+			clickedJobs.value.push(clickedButton);
 		}
 
 		function removeFromFilteredArray(event) {
 			const target = event.target.previousElementSibling.innerText;
 
-			const searchResults = data.map((job) => [
+			const searchResults = jobs.map((job) => [
 				job.level,
 				job.role,
 				...job.languages,
@@ -34,7 +34,7 @@ export default {
 			const union = searchResults
 				.map((searchResult, i) => {
 					if (
-						clicked.value.every((keyWord) => {
+						clickedJobs.value.every((keyWord) => {
 							return searchResult.includes(keyWord);
 						})
 					) {
@@ -43,25 +43,25 @@ export default {
 				})
 				.filter((item) => item !== undefined);
 
-			const filteredData = data.filter((filteredArray, i) => {
+			const filteredData = jobs.filter((filteredJobs, i) => {
 				return union.includes(i);
 			});
-			filteredArray.value = filteredData;
+			filteredJobs.value = filteredData;
 
-			const newClicked = clicked.value.filter((element) => {
+			const newClickedJobs = clickedJobs.value.filter((element) => {
 				return element !== target;
 			});
-			clicked.value = newClicked;
+			clickedJobs.value = newClickedJobs;
 		}
 
 		function clearFilteredJobs() {
-			filteredArray.value = [];
+			filteredJobs.value = [];
 		}
 
 		return {
-			clicked,
-			data,
-			filteredArray,
+			clickedJobs,
+			jobs,
+			filteredJobs,
 			addToFilteredArray,
 			clearFilteredJobs,
 			removeFromFilteredArray,
@@ -74,15 +74,15 @@ export default {
 <template>
 	<header class="header"></header>
 	<JobsFilterComponent
-		v-if="clicked.length"
-		:jobs="filteredArray"
-		:clickedButton="clicked"
+		v-if="clickedJobs.length"
+		:jobs="filteredJobs"
+		:clickedButton="clickedJobs"
 		:clearFilteredJobs="clearFilteredJobs"
 		:removeFromFilteredArray="removeFromFilteredArray"
 	/>
 	<main class="main">
 		<JobsListComponent
-			:jobs="filteredArray"
+			:jobs="filteredJobs"
 			:addToFilteredArray="addToFilteredArray"
 		/>
 	</main>
