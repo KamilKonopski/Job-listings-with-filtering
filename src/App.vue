@@ -55,7 +55,8 @@ export default {
 		}
 
 		function clearFilteredJobs() {
-			filteredJobs.value = [];
+			filteredJobs.value = jobs;
+			clickedJobs.value = [];
 		}
 
 		return {
