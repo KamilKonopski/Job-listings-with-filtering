@@ -30,6 +30,7 @@ export default {
 .filtered {
 	background-color: #fff;
 	border-radius: 5px;
+	box-shadow: 0px 8px 20px -8px rgba(91, 164, 164, 1);
 	display: flex;
 	justify-content: space-between;
 	min-height: 1rem;
@@ -61,5 +62,19 @@ export default {
 	cursor: pointer;
 	font-size: 1.6rem;
 	font-weight: 700;
+}
+
+@media screen and (min-width: 1024px) {
+	.filtered {
+		width: 1024px;
+	}
+
+	.filtered__item {
+		font-size: 1.5rem;
+	}
+
+	.filtered__clear-btn {
+		font-size: 1.5rem;
+	}
 }
 </style>
