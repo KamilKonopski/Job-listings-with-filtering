@@ -16,7 +16,7 @@ export default {
 			<span
 				v-for="(text, index) in clickedButton"
 				:key="index"
-				class="filtered__text"
+				class="filtered__item"
 				>{{ text }}</span
 			>
 		</div>
@@ -28,13 +28,14 @@ export default {
 
 <style scoped>
 .filtered {
-	background-color: var(--light-grayish-cyan-ft);
+	background-color: #fff;
 	border-radius: 5px;
 	display: flex;
 	justify-content: space-between;
 	min-height: 1rem;
 	margin: 0 auto;
 	transform: translateY(-60%);
+	padding: 2rem;
 	width: 90%;
 }
 
@@ -42,17 +43,23 @@ export default {
 	display: flex;
 	flex-basis: 60%;
 	flex-wrap: wrap;
+	gap: 10px;
 }
 
-.filtered__text {
-	font-size: 1.5rem;
+.filtered__item {
+	background-color: var(--light-grayish-cyan-ft);
+	color: var(--desaturated-dark-cyan);
+	font-size: 1.8rem;
+	font-weight: 700;
+	padding: 1rem;
 }
 
 .filtered__clear-btn {
+	background-color: transparent;
 	border: none;
 	color: var(--very-dark-grayish-cyan);
-	flex-basis: 40%;
-	font-size: 1.5rem;
+	cursor: pointer;
+	font-size: 1.6rem;
 	font-weight: 700;
 }
 </style>
