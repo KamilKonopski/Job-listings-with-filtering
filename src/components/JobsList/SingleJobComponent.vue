@@ -86,6 +86,7 @@ export default {
 .job {
 	background-color: #fff;
 	border-radius: 5px;
+	box-shadow: 0px 8px 20px -8px rgba(91, 164, 164, 1);
 	margin-bottom: 4rem;
 	padding: 3.5rem 1.8rem 2rem;
 	position: relative;
